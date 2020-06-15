@@ -19,13 +19,13 @@ public class recursionAndIteration {
         System.out.println("Fibonacci iteration:");
         long start = System.currentTimeMillis();
         System.out.printf("Fibonacci sequence(element at index %d) = %d \n", n, fibIteration(n));
-        System.out.printf("Time: %d ms\n", System.currentTimeMillis() - start);
+        System.out.printf("Time: %d ns\n", System.nanoTime() - start);
 
         //Print- recursive method
         System.out.println("Fibonacci recursion:");
         start = System.currentTimeMillis();
         System.out.printf("Fibonacci sequence(element at index %d) = %d \n", n, fibRecursion(n));
-        System.out.printf("Time: %d ms\n", System.currentTimeMillis() - start);
+        System.out.printf("Time: %d ns\n", System.nanoTime() - start);
       
     }
   
