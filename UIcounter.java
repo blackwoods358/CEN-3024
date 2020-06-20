@@ -10,36 +10,46 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
 
-public class UIcounter extends Application  {
-    Button button1;
-
+public class UIcounter extends Application {
+    private static Button button1;
+    private static HashMap temp;
+    private static Map<String, Long> counts;
+    private static Map<String, Long> hm1;
+    private static Map<String, Long> en;
+Stage window;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        primaryStage.setTitle("Word counter");
+window = primaryStage;
+window.setTitle("Word counter");
 
         button1 = new Button("Count Words");
 
-        button1.setOnAction( (e) -> System.out.println("Lets count lets count") );
+        button1.setOnAction((e) -> closeProgram());
 
         StackPane layout = new StackPane();
 
+
         layout.getChildren().addAll(button1);
         Scene scene = new Scene(layout, 400, 400);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        window.setScene(scene);
+        window.show();
 
     }
+private void closeProgram(){
+    System.out.println("Lets count lets count");
+   window.close();
 
+}
     //function to sort map
-    public static HashMap<String, Long> sortByValue (Map < String, Long > counts){
+    public static HashMap<String, Long> sortByValue(Map<String, Long> counts) {
         launch();
         // Create a list From HashMap
         List<Map.Entry<String, Long>> list =
@@ -61,7 +71,7 @@ public class UIcounter extends Application  {
 
 
         // put data from sorted list to hashmap
-        HashMap<String, Long> temp = new LinkedHashMap<String, Long>();
+        temp = new LinkedHashMap<String, Long>();
         for (Map.Entry<String, Long> aa : list) {
             temp.put(aa.getKey(), aa.getValue());
         }
@@ -69,12 +79,12 @@ public class UIcounter extends Application  {
     }
 
 
-    public static void main (String[]args) throws IOException {
+    public static void main(String[] args) throws IOException {
         //path for data
         URL url = new URL("https://www.gutenberg.org/files/1065/1065-h/1065-h.htm");
         BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
         String line;
-        Map<String, Long> counts = new HashMap<>();
+        counts = new HashMap<>();
 
         //Fill hash map  w values
         while ((line = br.readLine()) != null) {
@@ -101,8 +111,7 @@ public class UIcounter extends Application  {
             }
         }
         // Display sorted Hashmap
-        Map<String, Long> hm1 = sortByValue(counts);
-
+        hm1 = sortByValue(counts);
 
         for (Map.Entry<String, Long> en : hm1.entrySet()) {
 
@@ -110,6 +119,7 @@ public class UIcounter extends Application  {
                     ", Value = " + en.getValue());
 
         }
+
     }
 
 }
