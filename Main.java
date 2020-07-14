@@ -46,24 +46,28 @@ public class Main {
             }
         }
 
-        Set<String> keys = counts.keySet();
-        Collection<Long> values = counts.values();
 
-    try {
-        Connection con = getConnection();
-        PreparedStatement create = con.prepareStatement("INSERT INTO word (words,occurrences) VALUES('" + keys + "','" + values + "' )  ");
-        while ((line = br.readLine()) != null) {
-     // not sure if this will work
-            create.executeUpdate();
-        }
-    } catch (Exception e) {
-        System.out.println(e);
-    } finally {
-        System.out.println("We have Poem  words & values ");
-    }
+        for (Map.Entry<String, Long> en : counts.entrySet()) {
+            String var1 = en.getKey();
+            Long var2 = en.getValue();
+
+
+            try {
+                Connection con = getConnection();
+                PreparedStatement create = con.prepareStatement("INSERT INTO word (words,occurrences) VALUES('" + var1 + "','" + var2 + "' )  ");
+               // while ((line = br.readLine()) != null) {
+                    // not sure if this will work
+                    create.executeUpdate();
+              //  }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                System.out.println("We have Poem  words & values ");
+            }
 //}
 
 
+        }
     }
 
 
@@ -94,8 +98,8 @@ public class Main {
 
     // insert into databasse
     public static void insert()throws Exception{
-        final String var1 = "the";
-        final String var2 = "19";
+        final String var1 = "run";
+        final int var2 = 9;
         try {
             Connection con = getConnection();
             PreparedStatement create = con.prepareStatement("INSERT INTO word (words,occurrences) VALUES ('" + var1 + "','" + var2 + "' )  ");
